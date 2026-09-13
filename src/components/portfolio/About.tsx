@@ -77,7 +77,7 @@ export function About() {
           </Reveal>
 
           <Reveal className="lg:col-span-5" delay={200}>
-            <div className="card-panel p-6 sm:p-7">
+            <div className="card-panel p-5 sm:p-6">
               <div className="flex items-center justify-between mb-5 pb-4 border-b border-[var(--border)]">
                 <span className="font-mono text-[12px] text-[var(--icon-muted)]">
                   ~/about

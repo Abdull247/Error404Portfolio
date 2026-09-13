@@ -16,32 +16,15 @@ export function Hero() {
       id="home"
       className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden"
     >
-      {/* background grid + glow */}
-      <div className="absolute inset-0 grid-bg opacity-60 pointer-events-none" />
-      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] glow-orange pointer-events-none" style={{ animation: "glow-pulse 12s ease-in-out infinite" }} />
-      <div className="absolute top-1/2 -left-32 w-[420px] h-[420px] glow-orange opacity-60 pointer-events-none" style={{ animation: "glow-pulse 16s ease-in-out infinite" }} />
+      {/* background grid + soft accent glow */}
+      <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
+      <div className="absolute -top-32 -right-24 w-[440px] h-[440px] glow-orange pointer-events-none" style={{ animation: "glow-pulse 14s ease-in-out infinite" }} />
+      <div className="absolute top-1/2 -left-24 w-[320px] h-[320px] glow-orange opacity-50 pointer-events-none" style={{ animation: "glow-pulse 18s ease-in-out infinite" }} />
       <div className="absolute inset-0 noise-overlay" />
 
       <div className="container-portfolio relative z-10 grid lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-7 space-y-7">
-          <Reveal>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--panel)] text-[12px] font-mono">
-              <span className="relative flex w-2 h-2">
-                <span className="absolute inset-0 rounded-full bg-[var(--accent)] animate-ping opacity-60" />
-                <span className="relative rounded-full w-2 h-2 bg-[var(--accent)]" />
-              </span>
-              <span className="text-[var(--tag)]">open_to</span>
-              <span className="text-[var(--heading)]">internships · junior · freelance</span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <p className="font-mono text-[13px] text-[var(--accent)]">
-              {"// dev codes — full-stack web & backend"}
-            </p>
-          </Reveal>
-
-          <Reveal delay={140}>
+          <Reveal delay={60}>
             <h1 className="font-heading font-semibold tracking-tight leading-[0.95] text-[var(--heading)]">
               <span className="block text-[clamp(2.5rem,7vw,5rem)]">
                 Hello, I&apos;m{" "}
@@ -56,7 +39,7 @@ export function Hero() {
             </h1>
           </Reveal>
 
-          <Reveal delay={220}>
+          <Reveal delay={140}>
             <p className="max-w-[560px] text-[15px] leading-relaxed text-[var(--subtext)]">
               Full-stack web &amp; backend developer based in Lagos / Abuja,
               Nigeria. I turn rough ideas into deployed, production-minded web
@@ -66,7 +49,7 @@ export function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={300}>
+          <Reveal delay={220}>
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
                 href="#projects"
@@ -86,7 +69,7 @@ export function Hero() {
             </div>
           </Reveal>
 
-          <Reveal delay={380}>
+          <Reveal delay={300}>
             <div className="flex items-center gap-8 pt-4 border-t border-[var(--border)]">
               {STATS.map((s) => (
                 <div key={s.label} className="flex flex-col">
@@ -103,7 +86,7 @@ export function Hero() {
         </div>
 
         <div className="lg:col-span-5 flex justify-center lg:justify-end">
-          <Reveal delay={260} className="w-full flex justify-center lg:justify-end">
+          <Reveal delay={180} className="w-full flex justify-center lg:justify-end">
             <TerminalWindow />
           </Reveal>
         </div>

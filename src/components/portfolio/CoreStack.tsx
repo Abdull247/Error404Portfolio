@@ -109,7 +109,7 @@ export function CoreStack() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {STACK.map((cat, i) => (
             <Reveal key={cat.name} delay={i * 70}>
-              <article className="card-panel p-6 h-full group">
+              <article className="card-panel p-5 h-full group">
                 <div className="flex items-center justify-between mb-5">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-md border border-[var(--border)] bg-[var(--bg)] flex items-center justify-center group-hover:border-[var(--accent)] transition-colors">
@@ -140,7 +140,7 @@ export function CoreStack() {
 
         {/* highlight bar */}
         <Reveal delay={120} className="mt-10">
-          <div className="card-panel p-6 sm:p-7 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
+          <div className="card-panel p-5 sm:p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
             <div>
               <div className="font-mono text-[11px] text-[var(--icon-muted)] uppercase tracking-wider mb-2">
                 ops philosophy

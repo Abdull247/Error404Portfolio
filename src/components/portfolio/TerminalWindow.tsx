@@ -72,22 +72,37 @@ export function TerminalWindow() {
         </div>
       </div>
 
-      <div className="font-mono text-[13px] leading-relaxed px-5 py-5 min-h-[280px]">
-        {LINES.slice(0, visibleCount).map((line, i) => (
-          <LineRow key={i} line={line} />
-        ))}
-        {visibleCount < LINES.length && (
-          <LineRow
-            line={{
-              kind: LINES[visibleCount].kind,
-              text:
-                LINES[visibleCount].kind === "input"
-                  ? typed
-                  : LINES[visibleCount].text,
-            }}
-            typing={LINES[visibleCount].kind === "input"}
-          />
-        )}
+      {/*
+        Render ALL lines always — un-reached lines are invisible
+        (visibility:hidden, NOT display:none) so they still occupy
+        their slot. This keeps the terminal body height constant
+        throughout the typing animation, preventing any layout shift
+        from disrupting page scroll.
+      */}
+      <div className="font-mono text-[13px] leading-relaxed px-5 py-5">
+        {LINES.map((line, i) => {
+          const isPast = i < visibleCount;
+          const isCurrent = i === visibleCount;
+
+          if (isPast) {
+            return <LineRow key={i} line={line} />;
+          }
+
+          if (isCurrent && line.kind === "input") {
+            // Currently-typing input: render typed substring.
+            // Single-line block — height matches the reserved slot.
+            return (
+              <LineRow
+                key={i}
+                line={{ kind: "input", text: typed }}
+                typing
+              />
+            );
+          }
+
+          // Current output, or future lines: reserve slot invisibly.
+          return <LineRow key={i} line={line} invisible />;
+        })}
       </div>
     </div>
   );
@@ -96,18 +111,28 @@ export function TerminalWindow() {
 function LineRow({
   line,
   typing = false,
+  invisible = false,
 }: {
   line: Line;
   typing?: boolean;
+  invisible?: boolean;
 }) {
+  const visClass = invisible ? "invisible" : "";
+
   if (line.kind === "input") {
     return (
-      <div className="flex items-start gap-2 mb-1.5">
+      <div className={`flex items-start gap-2 mb-1.5 ${visClass}`}>
         <span className="text-[var(--accent)] select-none">$</span>
-        <span className="text-[var(--heading)]">{line.text}</span>
+        <span className="text-[var(--heading)] whitespace-pre">
+          {line.text}
+        </span>
         {typing && <span className="cursor-blink" />}
       </div>
     );
   }
-  return <div className="text-[var(--subtext)] mb-1.5 pl-4">{line.text}</div>;
+  return (
+    <div className={`text-[var(--subtext)] mb-1.5 pl-4 whitespace-pre ${visClass}`}>
+      {line.text}
+    </div>
+  );
 }

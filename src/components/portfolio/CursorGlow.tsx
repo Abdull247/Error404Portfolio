@@ -54,7 +54,7 @@ export function CursorGlow() {
       className="hidden lg:block fixed top-0 left-0 w-[400px] h-[400px] pointer-events-none z-[1]"
       style={{
         background:
-          "radial-gradient(circle at center, rgba(245, 166, 35, 0.10) 0%, rgba(245, 166, 35, 0) 60%)",
+          "radial-gradient(circle at center, rgba(245, 166, 35, 0.05) 0%, rgba(245, 166, 35, 0) 60%)",
         willChange: "transform",
       }}
       aria-hidden="true"

@@ -118,7 +118,7 @@ export function Projects() {
         <Reveal delay={80}>
           <article className="card-panel p-0 overflow-hidden mb-6 group">
             <div className="grid lg:grid-cols-12 gap-0">
-              <div className="lg:col-span-5 relative p-8 sm:p-10 bg-[var(--bg)] border-b lg:border-b-0 lg:border-r border-[var(--border)]">
+              <div className="lg:col-span-5 relative p-6 sm:p-8 bg-[var(--bg)] border-b lg:border-b-0 lg:border-r border-[var(--border)]">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-md border border-[var(--border)] bg-[var(--panel)] flex items-center justify-center">
                     <featured.icon className="w-5 h-5 text-[var(--accent)]" />
@@ -168,7 +168,7 @@ export function Projects() {
                 </div>
               </div>
 
-              <div className="lg:col-span-7 p-8 sm:p-10 flex flex-col">
+              <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col">
                 <p className="text-[15px] leading-relaxed mb-6">
                   {featured.description}
                 </p>
@@ -239,7 +239,7 @@ export function Projects() {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="card-panel p-6 h-full flex flex-col group">
+    <article className="card-panel p-5 h-full flex flex-col group">
       <div className="flex items-start justify-between mb-5">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-md border border-[var(--border)] bg-[var(--bg)] flex items-center justify-center group-hover:border-[var(--accent)] transition-colors">

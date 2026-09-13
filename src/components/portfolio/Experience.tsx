@@ -59,7 +59,7 @@ export function Experience() {
                     />
                   </div>
 
-                  <div className="card-panel p-6">
+                  <div className="card-panel p-5">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
                       <span className="font-mono text-[11px] text-[var(--accent)]">
                         {item.period}

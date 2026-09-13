@@ -71,7 +71,7 @@ export function Strengths() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {STRENGTHS.map((s, i) => (
             <Reveal key={s.title} delay={i * 60}>
-              <article className="card-panel p-6 h-full group relative overflow-hidden">
+              <article className="card-panel p-5 h-full group relative overflow-hidden">
                 <div
                   className="absolute -top-12 -right-12 w-32 h-32 glow-orange opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 />
