@@ -62,3 +62,48 @@ Stage Summary:
 - Hero is now cleaner, less busy at the top, with a softer amber atmosphere.
 - Terminal typing no longer shifts page height — scroll stays smooth.
 - Cards feel tighter and more genuine with reduced padding.
+
+---
+Task ID: portfolio-003
+Agent: main (Super Z)
+Task: Fix hero mobile responsiveness and update real contact/project links (GitHub: Abdull247, phone/WhatsApp: +2347063349393, Error404Apis live: https://error404apis.pages.dev, TaskBridge: https://usetaskbridge.web.app).
+
+Work Log:
+- Hero.tsx: Rewrote for full mobile responsiveness:
+  - h1 clamp minimums reduced: main 2.5rem→1.75rem, subtitle 1.6rem→1rem (scales from 320px to desktop).
+  - Added `break-words` + `overflowWrap: break-word` + `textWrap: balance` on h1 for safe text wrapping on ultra-narrow screens.
+  - Buttons: changed from `flex-wrap` to `flex-col sm:flex-row` so they stack vertically on mobile (full-width, centered) and go side-by-side on sm+.
+  - Stats: changed from `flex gap-8` to `grid grid-cols-3 gap-3 sm:gap-6 sm:flex sm:gap-8` so they fit 3-per-row even at 320px; reduced font sizes with clamp for value (20px→clamp(1.15rem,5vw,1.5rem)) and label (11px→9px on mobile).
+  - Reduced vertical spacing on mobile: `space-y-5 sm:space-y-7` and `gap-10 lg:gap-12`.
+  - Body paragraph: `text-[14px] sm:text-[15px]` for better mobile readability.
+  - Section: `pt-24 sm:pt-28` and `overflow-x-hidden overflow-y-hidden` to prevent horizontal scroll.
+- TerminalWindow.tsx: Added responsive font size `text-[11px] sm:text-[13px]` and `px-4 sm:px-5`; added `overflow-x-auto` to terminal body so long lines (like the stack list) scroll within the terminal instead of overflowing the viewport.
+- globals.css: Added `overflow-x: hidden` to body as a global safety net against any horizontal scroll.
+- Contact.tsx: Updated all contact links:
+  - GitHub: github.com/devcodes → github.com/Abdull247 (href + handle).
+  - Phone: +234 XXX XXX XXXX → +234 706 334 9393 (href: tel:+2347063349393).
+  - Added WhatsApp entry (MessageCircle icon, handle: +234 706 334 9393, href: https://wa.me/2347063349393).
+  - "view github" button href → https://github.com/Abdull247.
+  - Buttons: `flex-col sm:flex-row` for mobile stacking.
+  - Contact link rows: responsive gap (`gap-3 sm:gap-4`), padding (`p-2.5 sm:p-3`), font (`text-[12px] sm:text-[13px]`).
+  - Added `flex-shrink-0` to icon and arrow to prevent squishing.
+- Projects.tsx: Added `liveUrl` and `sourceUrl` fields to Project type.
+  - Error404Apis: liveUrl = https://error404apis.pages.dev.
+  - TaskBridge: liveUrl = https://usetaskbridge.web.app.
+  - All projects: sourceUrl = https://github.com/Abdull247.
+  - Featured card: replaced "case_study" + "source" buttons with conditional `live_url` + `source` buttons (stack vertically on mobile via `flex-col sm:flex-row`).
+  - Mock browser URL bar: "api.error404.dev" → "error404apis.pages.dev" (matches real deployment).
+  - ProjectCard: Added `live` and `source` links at the bottom of each secondary card (live in accent color, source in tag color).
+- ESLint: clean.
+- Agent Browser verified:
+  - 390px (iPhone 12): No horizontal overflow (scrollWidth = clientWidth = 390). Hero 9/10 per VLM.
+  - 320px (iPhone SE): No horizontal overflow. Subtitle wraps to 2 lines cleanly. Hero 9/10 per VLM.
+  - 1440px (desktop): Layout balanced, all elements visible. Hero 9/10 per VLM.
+  - Contact links panel: All 6 entries visible (GitHub/Abdull247, portfolio, email, WhatsApp, phone, LinkedIn). 9/10 per VLM.
+  - No console errors at any viewport.
+
+Stage Summary:
+- Hero is now fully responsive from 320px to 1440px+ — no text truncation, no horizontal scroll, buttons stack on mobile, stats fit 3-per-row.
+- Terminal scales font and scrolls internally for long lines instead of overflowing viewport.
+- All contact info updated to real values (GitHub: Abdull247, phone/WhatsApp: +2347063349393).
+- All projects now show live links where deployed (Error404Apis → error404apis.pages.dev, TaskBridge → usetaskbridge.web.app) and source links to the real GitHub.

@@ -23,7 +23,11 @@ type Project = {
   stack: string[];
   status?: "shipped" | "building";
   featured?: boolean;
+  liveUrl?: string;
+  sourceUrl?: string;
 };
+
+const GITHUB_URL = "https://github.com/Abdull247";
 
 const PROJECTS: Project[] = [
   {
@@ -35,6 +39,8 @@ const PROJECTS: Project[] = [
     icon: Plug,
     status: "shipped",
     featured: true,
+    liveUrl: "https://error404apis.pages.dev",
+    sourceUrl: GITHUB_URL,
     description:
       "A developer-focused API catalogue designed to make common app features easy to integrate through simple endpoints and documentation. Vite frontend with a Node.js backend, health endpoints, CORS handling, and same-domain API routing/proxy architecture.",
     highlights: [
@@ -53,6 +59,8 @@ const PROJECTS: Project[] = [
     year: "2026",
     icon: Boxes,
     status: "shipped",
+    liveUrl: "https://usetaskbridge.web.app",
+    sourceUrl: GITHUB_URL,
     description:
       "A task/reward marketplace connecting advertisers with users completing online tasks. Backend flows around PostgreSQL/Neon, email verification, task categories, proof configuration and API-driven workflows.",
     highlights: [
@@ -71,6 +79,7 @@ const PROJECTS: Project[] = [
     year: "2026",
     icon: Bot,
     status: "building",
+    sourceUrl: GITHUB_URL,
     description:
       "An AI coding environment for generating Node.js backends/APIs using sandboxed development environments. Designed a two-panel workflow with chat, file/editor views, logs, endpoints and expandable planning steps.",
     highlights: [
@@ -89,6 +98,7 @@ const PROJECTS: Project[] = [
     year: "2026",
     icon: Clapperboard,
     status: "shipped",
+    sourceUrl: GITHUB_URL,
     description:
       "A movie and TV application backed by TMDB and third-party media APIs, with caching and fallback strategies. Worked on API integration, search, media playback architecture, downloads, and performance-oriented UX.",
     highlights: [
@@ -146,8 +156,8 @@ export function Projects() {
                     <span className="w-2 h-2 rounded-full bg-[#ff5f57]" />
                     <span className="w-2 h-2 rounded-full bg-[#febc2e]" />
                     <span className="w-2 h-2 rounded-full bg-[#28c840]" />
-                    <span className="ml-3 font-mono text-[10px] text-[var(--icon-muted)]">
-                      api.error404.dev
+                    <span className="ml-3 font-mono text-[10px] text-[var(--icon-muted)] truncate">
+                      error404apis.pages.dev
                     </span>
                   </div>
                   <pre className="font-mono text-[11px] leading-relaxed p-4 text-[var(--subtext)] overflow-x-auto">
@@ -201,23 +211,29 @@ export function Projects() {
                   ))}
                 </div>
 
-                <div className="mt-auto flex flex-wrap gap-3">
-                  <a
-                    href="#contact"
-                    className="btn-accent inline-flex items-center gap-2 px-4 py-2.5 rounded-md font-mono text-[12px]"
-                  >
-                    case_study
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                  <a
-                    href="https://github.com/devcodes"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-ghost-line inline-flex items-center gap-2 px-4 py-2.5 rounded-md font-mono text-[12px]"
-                  >
-                    source
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
+                <div className="mt-auto flex flex-col sm:flex-row gap-3">
+                  {featured.liveUrl && (
+                    <a
+                      href={featured.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-accent inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md font-mono text-[12px]"
+                    >
+                      live_url
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                  {featured.sourceUrl && (
+                    <a
+                      href={featured.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-ghost-line inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md font-mono text-[12px]"
+                    >
+                      source
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -274,7 +290,7 @@ function ProjectCard({ project }: { project: Project }) {
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-1 pt-4 border-t border-[var(--border)]">
+      <div className="flex flex-wrap gap-1 pt-4 border-t border-[var(--border)] mb-4">
         {project.stack.slice(0, 4).map((s) => (
           <span
             key={s}
@@ -283,6 +299,31 @@ function ProjectCard({ project }: { project: Project }) {
             #{s}
           </span>
         ))}
+      </div>
+
+      <div className="flex items-center gap-3 mt-auto">
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 font-mono text-[11px] text-[var(--accent)] hover:opacity-80 transition-opacity"
+          >
+            live
+            <ArrowUpRight className="w-3 h-3" />
+          </a>
+        )}
+        {project.sourceUrl && (
+          <a
+            href={project.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 font-mono text-[11px] text-[var(--tag)] hover:text-[var(--accent)] transition-colors"
+          >
+            source
+            <ArrowUpRight className="w-3 h-3" />
+          </a>
+        )}
       </div>
     </article>
   );

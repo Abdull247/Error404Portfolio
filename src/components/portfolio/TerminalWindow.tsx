@@ -79,7 +79,7 @@ export function TerminalWindow() {
         throughout the typing animation, preventing any layout shift
         from disrupting page scroll.
       */}
-      <div className="font-mono text-[13px] leading-relaxed px-5 py-5">
+      <div className="font-mono text-[11px] sm:text-[13px] leading-relaxed px-4 sm:px-5 py-5 overflow-x-auto">
         {LINES.map((line, i) => {
           const isPast = i < visibleCount;
           const isCurrent = i === visibleCount;
